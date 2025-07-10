@@ -57,6 +57,8 @@ MyApp.Api/
 ---
 
 ## БД 
+
+```sql
 CREATE TABLE "TrainingSlots" (
     "Id" SERIAL PRIMARY KEY,
     "StartTime" TIMESTAMP NOT NULL,
