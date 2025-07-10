@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Запись</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Запись на тренировку</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form id="bookingForm" class="card p-4 shadow-sm bg-white">
+                <div class="mb-3">
+                    <label class="form-label">Имя</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Телефон</label>
+                    <input type="tel" class="form-control" id="phone" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Записаться</button>
+                <div id="result" class="mt-3 text-danger text-center"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const slotId = parseInt(urlParams.get("slotId"));
+
+    const form = document.getElementById("bookingForm");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+
+        const result = await sendBooking({ name, phone, trainingSlotId: slotId });
+
+        if (result === true) {
+            window.location.href = "index.html";
+        } else {
+            document.getElementById("result").innerText = result;
+        }
+
+        form.reset();
+    });
+</script>
+</body>
+</html>
