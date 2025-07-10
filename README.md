@@ -53,3 +53,20 @@ MyApp.Api/
 ├── Program.cs
 ├── appsettings.json
 └── MyApp.Api.csproj
+
+## БД 
+CREATE TABLE "TrainingSlots" (
+    "Id" SERIAL PRIMARY KEY,
+    "StartTime" TIMESTAMP NOT NULL,
+    "MaxClients" INTEGER NOT NULL
+);
+
+CREATE TABLE "Bookings" (
+    "Id" SERIAL PRIMARY KEY,
+    "Name" TEXT NOT NULL,
+    "Phone" TEXT NOT NULL,
+    "TrainingSlotId" INTEGER NOT NULL,
+    "CreatedAt" TIMESTAMP NOT NULL,
+    CONSTRAINT fk_slot FOREIGN KEY ("TrainingSlotId") REFERENCES "TrainingSlots" ("Id") ON DELETE CASCADE
+);
+
