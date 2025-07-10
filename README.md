@@ -54,6 +54,8 @@ MyApp.Api/
 ├── appsettings.json
 └── MyApp.Api.csproj
 
+---
+
 ## БД 
 CREATE TABLE "TrainingSlots" (
     "Id" SERIAL PRIMARY KEY,
